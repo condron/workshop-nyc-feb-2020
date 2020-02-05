@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.JSInterop;
 using Registration.Blueprint.Commands;
 using HotelDomain = Registration.Application.Bootstrap;
@@ -21,7 +22,7 @@ namespace web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
@@ -45,7 +46,7 @@ namespace web
                        context.Request.Form["roomType"].ToString()));
                     break;
                 case "/list-rooms":
-                    context.Response.WriteAsync(Json.Serialize(HotelDomain.RoomReadModel.Current.Select(r=>r.Summary).ToArray()));
+                    context.Response.WriteAsync(Newtonsoft.Json.JsonConvert.SerializeObject(HotelDomain.RoomReadModel.Current.Select(r=>r.Summary).ToArray()));
                     break;
                 default:
                     context.Response.SendFileAsync("pages/401.html");
