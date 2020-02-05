@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Room</title>
+</head>
+<body>
+    <h1>Add Room</h1>
+    <form>
+    <input name="roomNumber" placeholder="Rm Number" /><br />
+    <input name="roomType" placeholder="Room Type" /><br />
+    <input name="roomLocation" placeholder="Floor" /><br />
+    </form>
+<input value="Add Room" onclick=' $.post("/add-room", $("form").serialize());' />
+<input value="List Rooms" onclick=' $.post("/list-rooms", {} ,function( data ) {alert( "Data Loaded: " + data )})' />
+</body>
+</html>

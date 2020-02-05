@@ -1,0 +1,58 @@
+using System;
+using Administration.Blueprint.Commands;
+using Infrastructure.Interfaces;
+
+namespace Administration
+{
+    public class Controller
+    {
+        private ConsoleView _view;
+        private readonly IBus _mainBus;
+
+        public Controller(ConsoleView view, IBus mainBus)
+        {
+            _view = view;
+            _mainBus = mainBus;
+        }
+        public void StartCommandLoop()
+        {
+            do //Command loop
+            {
+                var cmd = Console.ReadLine();
+                //Single token commands
+                if (cmd.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("Disconnecting EventStore");
+                    break;
+                }
+                if (cmd.Equals("list", StringComparison.OrdinalIgnoreCase))
+                {
+                    _view.ListRooms();
+                    break;
+                }
+                //3 token commands
+                var tokens = cmd.Split(' ');
+                if (tokens.Length != 2)
+                {
+                    _view.ErrorMsg = "Unknown command or Invalid number of parameters.";
+                    continue;
+                }
+                switch (tokens[0].ToUpperInvariant())
+                {
+                    case "ADD-TYPE":
+                        var addRoom = new AddRoomType(
+                            Guid.NewGuid(),
+                            tokens[1]);
+
+                        _mainBus.Publish(addRoom);
+                       
+                        break;
+                    default:
+                        _view.ErrorMsg = "Unknown Command";
+                        break;
+                }
+
+            } while (true);
+        }
+    }
+}
