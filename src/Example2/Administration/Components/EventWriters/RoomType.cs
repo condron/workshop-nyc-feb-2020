@@ -8,6 +8,7 @@ namespace Administration.Components.EventWriters
 {
     public class RoomType:Writer
     {
+	    private bool _active;
         public RoomType(
             Guid id,
             string description)
@@ -17,9 +18,21 @@ namespace Administration.Components.EventWriters
             Raise(new RoomTypeAdded(id,description));
         }
 
+        public void Deactivate()
+        {
+			if(!_active) return;
+			Raise(new RoomTypeDeactivated(Id));
+        }
+
         private void Apply(RoomTypeAdded evt)
         {
             Id = evt.TypeId;
+            _active = true;
+        }
+
+        private void Apply(RoomTypeDeactivated evt)
+        {
+	        _active = false;
         }
     }
 }

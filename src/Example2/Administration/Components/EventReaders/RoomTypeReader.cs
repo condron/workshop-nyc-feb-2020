@@ -20,7 +20,13 @@ namespace Administration.Components.EventReaders
 
         private void Apply(RoomTypeAdded evt)
         {
-            Model.Add(new RoomTypeItem(evt.TypeId,evt.Description));
+	        Model.Add(new RoomTypeItem(evt.TypeId,evt.Description));
+        }
+        private void Apply(RoomTypeDeactivated evt)
+        {
+	       var roomType = Model.FirstOrDefault(rt => rt.Id == evt.TypeId);
+		   if(roomType == null) return;
+		   Model.Remove(roomType);
         }
 
         private void Apply(RoomTypeDescriptionChanged evt)

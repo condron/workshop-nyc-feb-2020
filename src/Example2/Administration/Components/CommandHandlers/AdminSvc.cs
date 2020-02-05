@@ -7,7 +7,9 @@ using Infrastructure.Interfaces;
 
 namespace Administration.Components.CommandHandlers
 {
-    public class AdminSvc:IHandleCommand<AddRoomType>
+    public class AdminSvc:
+	    IHandleCommand<AddRoomType>,
+	    IHandleCommand<DeactivateRoomType>
     {
         private readonly IRepository _repo;
 
@@ -26,6 +28,20 @@ namespace Administration.Components.CommandHandlers
             }
 
             return true;
+        }
+
+        public bool Handle(DeactivateRoomType cmd)
+        {
+	        try {
+		        var roomType = _repo.Load<RoomType>(cmd.TypeId);
+				roomType.Deactivate();
+		        _repo.Save(roomType);
+	        }
+	        catch (Exception _) {
+		        return false;
+	        }
+
+	        return true;
         }
     }
 }
