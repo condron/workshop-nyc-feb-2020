@@ -18,7 +18,7 @@ namespace Administration.Tests
         [Fact]
         public void can_create_room_type()
         {
-            var eventNamespace = "Administration.Blueprint.Events";
+            var eventNamespace = "Administration.EventModel.Events";
             var eventAssembly = "Administration";
             var settings = ConnectionSettings.Create()
                 .SetDefaultUserCredentials(new UserCredentials("admin", "changeit"))
