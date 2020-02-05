@@ -1,6 +1,6 @@
 ﻿using System;
-using Administration.Blueprint.Events;
 using Administration.Components.EventWriters;
+using Administration.EventModel.Events;
 using Infrastructure.Interfaces;
 using Xunit;
 

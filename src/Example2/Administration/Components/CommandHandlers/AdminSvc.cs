@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Administration.Blueprint.Commands;
 using Administration.Components.EventWriters;
+using Administration.EventModel.Commands;
 using Infrastructure.Interfaces;
 
 namespace Administration.Components.CommandHandlers

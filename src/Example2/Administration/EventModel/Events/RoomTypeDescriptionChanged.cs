@@ -1,15 +1,14 @@
 ﻿using System;
 using Infrastructure.Interfaces;
 
-
-namespace Administration.Blueprint.Events
+namespace Administration.EventModel.Events
 {
-    public class RoomTypeAdded:IEvent
+    public class RoomTypeDescriptionChanged:IEvent
     {
         public readonly Guid TypeId;
         public readonly string Description;
 
-        public RoomTypeAdded(
+        public RoomTypeDescriptionChanged(
             Guid typeId,
             string description)
         {

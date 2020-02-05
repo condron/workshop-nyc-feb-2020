@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Administration.Blueprint.Events;
+using Administration.EventModel.Events;
 using Infrastructure;
 
 namespace Administration.Components.EventWriters

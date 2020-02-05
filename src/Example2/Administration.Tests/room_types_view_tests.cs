@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Administration.Blueprint.Events;
-using Administration.Blueprint.ReadModels;
 using Administration.Components.EventReaders;
+using Administration.EventModel.Events;
+using Administration.EventModel.ReadModels;
 using Infrastructure;
 using Xunit;
 

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
-using Administration.Blueprint.Commands;
 using Administration.Components.CommandHandlers;
 using Administration.Components.EventWriters;
+using Administration.EventModel.Commands;
 using EventStore.ClientAPI;
 using EventStore.ClientAPI.SystemData;
 using Infrastructure;

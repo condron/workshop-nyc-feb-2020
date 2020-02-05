@@ -1,5 +1,5 @@
 using System;
-using Administration.Blueprint.Commands;
+using Administration.EventModel.Commands;
 using Infrastructure.Interfaces;
 
 namespace Administration

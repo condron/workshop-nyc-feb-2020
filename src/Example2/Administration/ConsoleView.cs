@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Administration.Blueprint.ReadModels;
+using Administration.EventModel.ReadModels;
 
 namespace Administration
 {

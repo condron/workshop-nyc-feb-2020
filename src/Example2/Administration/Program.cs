@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Net;
-using Administration.Blueprint.Commands;
-using Administration.Blueprint.Events;
 using Administration.Components.CommandHandlers;
 using Administration.Components.EventReaders;
+using Administration.EventModel.Commands;
 using EventStore.ClientAPI;
 using EventStore.ClientAPI.SystemData;
 using Infrastructure;

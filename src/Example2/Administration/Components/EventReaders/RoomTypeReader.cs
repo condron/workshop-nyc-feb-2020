@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Administration.Blueprint.Events;
-using Administration.Blueprint.ReadModels;
+using Administration.EventModel.Events;
+using Administration.EventModel.ReadModels;
 using EventStore.ClientAPI;
 using Infrastructure;
 using Infrastructure.Interfaces;
