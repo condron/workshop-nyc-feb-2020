@@ -45,19 +45,30 @@ namespace Administration
                 }
                 switch (tokens[0].ToUpperInvariant())
                 {
-                    case "ADD-TYPE":
-                        var addRoom = new AddRoomType(
-                            Guid.NewGuid(),
-                            tokens[1],
-                            string.Join(" ", tokens.Skip(2)));
+	                case "ADD-TYPE":
+		                var addRoom = new AddRoomType(
+			                Guid.NewGuid(),
+			                tokens[1],
+			                string.Join(" ", tokens.Skip(2)));
 
-                        _mainBus.Publish(addRoom);
+		                _mainBus.Publish(addRoom);
                        
-                        break;
-                    default:
-                        _view.ErrorMsg = "Unknown Command";
-                        break;
+		                break;
+	                case "ADD-ROOM":
+		                var typeId = _view.RoomSummaries.First(type => type.Description == tokens[1]).Id;
+		                var room = new AddRoom(
+			                Guid.NewGuid(),
+			                typeId,
+			                tokens[2]);
+
+		                _mainBus.Publish(room);
+                       
+		                break;
+	                default:
+		                _view.ErrorMsg = "Unknown Command";
+		                break;
                 }
+              
 
             } while (true);
         }

@@ -34,6 +34,7 @@ namespace Administration
 
             var adminSvc = new AdminSvc(repo);
             mainBus.Subscribe<AddRoomType>(adminSvc);
+            mainBus.Subscribe<AddRoom>(adminSvc);
 
             var view = new ConsoleView();
             var controller = new Controller(view, mainBus);
