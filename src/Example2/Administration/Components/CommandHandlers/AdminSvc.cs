@@ -20,7 +20,7 @@ namespace Administration.Components.CommandHandlers
         public bool Handle(AddRoomType cmd)
         {
             try {
-                var roomType = new RoomType(cmd.TypeId, cmd.Description);
+                var roomType = new RoomType(cmd.TypeId, cmd.Name, cmd.Description);
                 _repo.Save(roomType);
             }
             catch (Exception _) {

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Administration.EventModel.Commands;
 using Infrastructure.Interfaces;
 
@@ -27,12 +28,17 @@ namespace Administration
                 }
                 if (cmd.Equals("list", StringComparison.OrdinalIgnoreCase))
                 {
-                    _view.ListRooms();
-                    break;
+	                _view.ListRooms();
+	                continue;
+                }
+                if (cmd.Equals("list-types", StringComparison.OrdinalIgnoreCase))
+                {
+	                _view.ListRooms();
+	                continue;
                 }
                 //3 token commands
                 var tokens = cmd.Split(' ');
-                if (tokens.Length != 2)
+                if (tokens.Length < 2)
                 {
                     _view.ErrorMsg = "Unknown command or Invalid number of parameters.";
                     continue;
@@ -42,7 +48,8 @@ namespace Administration
                     case "ADD-TYPE":
                         var addRoom = new AddRoomType(
                             Guid.NewGuid(),
-                            tokens[1]);
+                            tokens[1],
+                            string.Join(" ", tokens.Skip(2)));
 
                         _mainBus.Publish(addRoom);
                        

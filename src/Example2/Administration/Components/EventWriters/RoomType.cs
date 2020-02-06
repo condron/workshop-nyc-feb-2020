@@ -11,11 +11,13 @@ namespace Administration.Components.EventWriters
 	    private bool _active;
         public RoomType(
             Guid id,
+			string name,
             string description)
         {
             if(id == Guid.Empty) throw new ArgumentException("bad Id", nameof(id));
+            if(string.IsNullOrWhiteSpace(name)) throw new ArgumentException("empty name", nameof(name));
             if(string.IsNullOrWhiteSpace(description)) throw new ArgumentException("empty description", nameof(description));
-            Raise(new RoomTypeAdded(id,description));
+            Raise(new RoomTypeAdded(id,name,description));
         }
 
         public void Deactivate()

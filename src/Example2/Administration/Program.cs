@@ -23,7 +23,7 @@ namespace Administration
             var conn = EventStoreConnection.Create(settings, new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1113));
             conn.ConnectAsync().Wait();
 
-            var eventNamespace = "Administration.Blueprint.Events";
+            var eventNamespace = "Administration.EventModel.Events";
             var eventAssembly = "Administration";
 
             var repo = new SimpleRepo(conn, eventNamespace, eventAssembly);
