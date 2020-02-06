@@ -35,7 +35,8 @@ namespace Administration
         {
             Console.Clear();
             Console.WriteLine("Available Commands:");
-            Console.WriteLine("\t Add-Type [description]");
+            Console.WriteLine("\t Add-Type [name] [description]");
+            Console.WriteLine("\t list");
             Console.WriteLine("\t exit");
             Console.WriteLine("Command:");
         }
