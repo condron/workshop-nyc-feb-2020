@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AccountDomain\AccountDomain.csproj" />
+    <ProjectReference Include="..\AccountReadModels\AccountReadModels.csproj" />
   </ItemGroup>
 
 </Project>
