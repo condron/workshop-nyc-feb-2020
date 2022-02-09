@@ -2,7 +2,7 @@
 
 namespace AccountReadModels
 {
-    public class AccountDisplay { 
+    public class AccountDisplayDTO { 
         public Guid Id { get; set; }
         public int Balance { get; set; }
     }

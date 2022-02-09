@@ -10,12 +10,13 @@ namespace AccountDomain.Tests
 {
     public  class AccountDisplayTests
     {
+        string displayName = "testName";
         [Fact]
         public void can_display_accounts() {
             //given
-            var created1 = new AccountMsgs.Created(Guid.NewGuid());
-            var created2 = new AccountMsgs.Created(Guid.NewGuid());
-            var created3 = new AccountMsgs.Created(Guid.NewGuid());
+            var created1 = new AccountMsgs.Created(Guid.NewGuid(),displayName);
+            var created2 = new AccountMsgs.Created(Guid.NewGuid(),displayName);
+            var created3 = new AccountMsgs.Created(Guid.NewGuid(), displayName);
 
             var list = new AccountList();
             //when
@@ -35,9 +36,9 @@ namespace AccountDomain.Tests
         public void can_display_account_balances()
         {
             //given
-            var created1 = new AccountMsgs.Created(Guid.NewGuid());
-            var created2 = new AccountMsgs.Created(Guid.NewGuid());
-            var created3 = new AccountMsgs.Created(Guid.NewGuid());
+            var created1 = new AccountMsgs.Created(Guid.NewGuid(),displayName);
+            var created2 = new AccountMsgs.Created(Guid.NewGuid(),displayName);
+            var created3 = new AccountMsgs.Created(Guid.NewGuid(), displayName);
             var USD10 = 10;
             var USD15 = 15;
             var USD16 = 16;

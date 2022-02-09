@@ -11,10 +11,14 @@ namespace AccountDomain
         public class Created
         {
             public readonly Guid Id;
-            public Created(Guid id)
+            public readonly string DisplayName;
+            public Created(Guid id, string displayName)
             {
                 Id = id;
+                DisplayName = displayName;
             }
+
+            
         }
         public class CashDeposited
         {
@@ -31,6 +35,27 @@ namespace AccountDomain
             public readonly Guid AccountId;
             public readonly int Amount;
             public CashWithdrawn(Guid accountId, int amount)
+            {
+                AccountId = accountId;
+                Amount = amount;
+            }
+        }
+        public class OverdraftProtectionAdded
+        {
+            public readonly Guid AccountId;
+            public readonly int Amount;
+            public OverdraftProtectionAdded(Guid accountId, int amount)
+            {
+                AccountId = accountId;
+                Amount = amount;
+            }
+        }
+        public class OverdraftAlert
+        {
+            public readonly Guid AccountId;
+            public readonly int Amount;
+            //todo: add transaction reference to actual withdrawl
+            public OverdraftAlert(Guid accountId, int amount)
             {
                 AccountId = accountId;
                 Amount = amount;

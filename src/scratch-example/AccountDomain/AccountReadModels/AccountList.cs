@@ -6,11 +6,11 @@ namespace AccountReadModels
 {
     public class AccountList
     {
-        public Dictionary<Guid, AccountDisplay> Accounts = new Dictionary<Guid, AccountDisplay>();
-        public Dictionary<Guid, AccountDisplay> LargeAccounts = new Dictionary<Guid, AccountDisplay>();
+        public Dictionary<Guid, AccountDisplayDTO> Accounts = new Dictionary<Guid, AccountDisplayDTO>();
+        public Dictionary<Guid, AccountDisplayDTO> LargeAccounts = new Dictionary<Guid, AccountDisplayDTO>();
 
         public void Handle(AccountMsgs.Created @event) {
-            Accounts.Add(@event.Id, new AccountDisplay { Id = @event.Id });
+            Accounts.Add(@event.Id, new AccountDisplayDTO { Id = @event.Id });
         }
         public void Handle(AccountMsgs.CashDeposited @event) {
             if (Accounts.TryGetValue(@event.AccountId, out var account)) {

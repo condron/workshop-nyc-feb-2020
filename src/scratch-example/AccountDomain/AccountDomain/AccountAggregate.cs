@@ -6,6 +6,7 @@ namespace AccountDomain
     public class AccountAggregate
     {
         private List<object> _pendingEvents = new List<object>();
+        private int _availableBalance;
         private int _balance;
         //only public for the repository 
         public Guid Id { get; private set; }
@@ -14,10 +15,11 @@ namespace AccountDomain
         public AccountAggregate() { }
 
         //public behavoirs
-        public AccountAggregate(Guid id)
+        public AccountAggregate(Guid id, string displayName)
         {
             if (id == Guid.Empty) { throw new ArgumentException("Empty ID is not allowed!"); }
-            Raise(new AccountMsgs.Created(id));
+            if (string.IsNullOrWhiteSpace(displayName)) { throw new ArgumentException("Empty displayName is not allowed!"); }
+            Raise(new AccountMsgs.Created(id, displayName));
         }
 
         public void DepositCash(int amount)
@@ -28,10 +30,16 @@ namespace AccountDomain
         public void WithdrawCash(int amount)
         {
             if (amount <= 0) { throw new ArgumentOutOfRangeException("Can't withdraw 0 or negative money"); }
-            if( _balance - amount < 0) { throw new ArgumentException("Overdraft!!!"); }
+            if(_availableBalance - amount < 0) { throw new ArgumentException("Overdraft!!!"); }
+            if (_balance - amount < 0) {
+                Raise(new AccountMsgs.OverdraftAlert(Id, amount));
+            }
             Raise(new AccountMsgs.CashWithdrawn(Id, amount));
         }
-
+        public void AddOverDraftProtection(int amount) {
+            if (amount <= 0) { throw new ArgumentOutOfRangeException("Can't add overdraft of 0 or negative money"); }
+            Raise(new AccountMsgs.OverdraftProtectionAdded(Id, amount));
+        }
         //apply methods
         private void Apply(AccountMsgs.Created @event)
         {
@@ -39,20 +47,26 @@ namespace AccountDomain
         }
         private void Apply(AccountMsgs.CashDeposited @event)
         {
+            _availableBalance += @event.Amount;
             _balance += @event.Amount;
         }
         private void Apply(AccountMsgs.CashWithdrawn @event)
         {
+            _availableBalance -= @event.Amount;
             _balance -= @event.Amount;
+        }
+        private void Apply(AccountMsgs.OverdraftProtectionAdded @event)
+        {
+            _availableBalance += @event.Amount;
         }
 
         //todo: move into base class and use reflection or something
         private void Raise(object @event)
         {
             _pendingEvents.Add(@event);
-            Append(@event);
+            Apply(@event);
         }
-        public void Append(object @event)
+        public void Apply(object @event)
         {
             if (@event.GetType() == typeof(AccountMsgs.Created))
             {
@@ -67,6 +81,11 @@ namespace AccountDomain
             if (@event.GetType() == typeof(AccountMsgs.CashDeposited))
             {
                 Apply((AccountMsgs.CashDeposited)@event);
+                return;
+            }
+            if (@event.GetType() == typeof(AccountMsgs.OverdraftProtectionAdded))
+            {
+                Apply((AccountMsgs.OverdraftProtectionAdded)@event);
                 return;
             }
         }
