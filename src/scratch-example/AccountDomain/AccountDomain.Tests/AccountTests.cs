@@ -19,7 +19,7 @@ namespace AccountDomain.Tests
             //test the id for the repo infrastructure
             Assert.Equal(id, account.Id);
             //the "real" test did we produce events?
-            var @events = account.TakePendingEvents();
+            var @events = account.TakeEvents();
 
             Assert.Collection(
                           events,
@@ -48,7 +48,7 @@ namespace AccountDomain.Tests
             account.DepositCash(amount1);
             account.DepositCash(amount2);
             //then
-            var @events = account.TakePendingEvents();
+            var @events = account.TakeEvents();
 
             Assert.Collection(
                           events,
@@ -84,7 +84,7 @@ namespace AccountDomain.Tests
             //when
 
             Assert.Throws<ArgumentException>(() => account.WithdrawCash(21));
-            var @events = account.TakePendingEvents();
+            var @events = account.TakeEvents();
             Assert.Empty(events);
 
             var amount1 = 10;
@@ -93,7 +93,7 @@ namespace AccountDomain.Tests
             account.WithdrawCash(amount2);
 
             //then
-            @events = account.TakePendingEvents();
+            @events = account.TakeEvents();
 
             Assert.Collection(
                           events,
@@ -134,7 +134,7 @@ namespace AccountDomain.Tests
             //not allowed
             Assert.Throws<ArgumentException>(() => account.WithdrawCash(41));
             //no events added
-            var @events = account.TakePendingEvents();
+            var @events = account.TakeEvents();
             Assert.Empty(events);
 
 
@@ -147,7 +147,7 @@ namespace AccountDomain.Tests
             account.WithdrawCash(amount10);
 
             //then
-            @events = account.TakePendingEvents();
+            @events = account.TakeEvents();
 
             Assert.Collection(
                           events,
