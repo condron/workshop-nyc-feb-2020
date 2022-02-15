@@ -119,6 +119,26 @@ namespace AccountDomain
                 Amount = amount;
             }
         }
+        public class DynamicContentDTO
+        {
+            public readonly List<Tuple<string, string>> Content;
+            public readonly Guid SchemaVersionId;
+            public DynamicContentDTO()
+            {
+
+            }
+        }
+        public class ContentAdded:IEvent
+        {
+            public readonly Guid ChangeId;
+            public readonly Guid UserId;
+            public readonly int AprovalRequired;
+            public readonly DynamicContentDTO content;
+            public ContentAdded()
+            {
+
+            }
+        }
         public class TransferFundsRecieved : IEvent
         {
             public readonly Guid TransferId;

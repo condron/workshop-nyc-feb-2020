@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+<ItemGroup>
+  <PackageReference Include="EventStore.Client" Version="20.10.0" />
+  <PackageReference Include="ReactiveDomain.UI" Version="0.8.23-beta224" NoWarn="NU1701" />
+  <PackageReference Include="ReactiveDomain" Version="0.8.23-beta224" NoWarn="NU1701" />
+</ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\AccountDomain\AccountDomain.csproj" />
+    <ProjectReference Include="..\AccountReadModels\AccountReadModels.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountDomain.Tests", "Acco
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountReadModels", "AccountReadModels\AccountReadModels.csproj", "{8922F8BE-3946-4568-A04D-46BE7C6ABE3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{972C52DC-3140-4569-A209-338272F18BF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8922F8BE-3946-4568-A04D-46BE7C6ABE3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8922F8BE-3946-4568-A04D-46BE7C6ABE3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8922F8BE-3946-4568-A04D-46BE7C6ABE3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{972C52DC-3140-4569-A209-338272F18BF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{972C52DC-3140-4569-A209-338272F18BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{972C52DC-3140-4569-A209-338272F18BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{972C52DC-3140-4569-A209-338272F18BF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

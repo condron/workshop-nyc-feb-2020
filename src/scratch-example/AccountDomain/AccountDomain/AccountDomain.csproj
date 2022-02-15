@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ReactiveDomain.UI" Version="0.8.23-beta224" NoWarn="NU1701" />
+    <PackageReference Include="ReactiveDomain" Version="0.8.23-beta224" NoWarn="NU1701" />
+  </ItemGroup>
+
 </Project>
