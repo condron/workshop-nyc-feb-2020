@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AccountDomain\AccountDomain.csproj" />
+    <PackageReference Include="ReactiveDomain" Version="0.8.23-beta224" NoWarn="NU1701" />
   </ItemGroup>
 
 </Project>
